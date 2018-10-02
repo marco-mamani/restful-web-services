@@ -1,14 +1,21 @@
 package duo.code.rest.webservices.resfulwebservices.user;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class User {
 
     private Integer id;
 
+    @Size(min = 2, message = "Name should have at least 2 characers.")
     private String name;
 
+    @Past
     private Date birthDate;
+
+    protected User() {
+    }
 
     public User(Integer id , String name, Date birthDate) {
         super();
@@ -18,7 +25,6 @@ public class User {
     }
 
     public Integer getId() {
-
         return id;
     }
 
