@@ -25,14 +25,34 @@ Users -> Posts
     - Add the validation types Size, Past in the User entity
 
 
-## INTERNATIONALIZATION 
+#### INTERNATIONALIZATION 
+
+##### Configuration
 - LocalResolver
     - Default Locale - Locale.US
 - ResourceBundleMessageSource
 
-## USAGE
+##### USAGE
 - Autowire MessageSource
 - @RequestHeader(value = "Accept-Language", required = false) Locale locale
 - messageSource.getMessage("helloWorld.message", null, locale)
 
 Completed until #29
+
+### Versioning
+
+ - Media type versioning (a.k.a. "content negotiation" or "accept header")
+    - GitHub
+ - (Custom) Header Versioning
+    - Microsoft
+ - URI Versioning
+    - Twitter
+ - Parameter Versioning
+    - Amazon
+ - Factors
+    - URI Pollution
+    - Misuse of HTTP headers
+    - Caching
+    - Can we execute the request on browser?
+    - API Documentation
+ - No Perfect Solution

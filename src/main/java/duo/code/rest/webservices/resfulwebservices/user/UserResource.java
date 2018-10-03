@@ -57,7 +57,7 @@ public class UserResource {
     //CREATED
     // input - details of the User
     // output - CREATED & Return the created URI
-    //HATEOAS
+    //HATEOAS -> HyperMedia driven systems
 
     @PostMapping("/users")
     public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
@@ -73,6 +73,5 @@ public class UserResource {
         return ResponseEntity.created(location).build();
 
     }
-
 
 }
