@@ -56,3 +56,13 @@ Completed until #29
     - Can we execute the request on browser?
     - API Documentation
  - No Perfect Solution
+ 
+ 
+ MYSQL
+ =====
+ create table user (
+    id integer not null,
+    birth_date timestamp,
+    name varchar(255),
+    primary key (id)
+ )

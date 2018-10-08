@@ -3,13 +3,18 @@ package duo.code.rest.webservices.resfulwebservices.user;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.persistence.*;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @ApiModel(description = "All details about the user.")
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
     @Size(min = 2, message = "Name should have at least 2 characers.")
@@ -19,6 +24,9 @@ public class User {
     @Past
     @ApiModelProperty(notes = "Birthday should be in the past.")
     private Date birthDate;
+
+    @OneToMany(mappedBy = "user") //name of the field in post
+    private List<Post> posts;
 
     protected User() {
     }
@@ -52,5 +60,13 @@ public class User {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }
