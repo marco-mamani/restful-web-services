@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "medico")
@@ -26,8 +27,9 @@ public class Medico extends Persona implements Serializable {
     public Medico() {
     }
 
-    public Medico(String especialidad, String curriculumVitae, Integer anosExperiencia, String numMatricula) {
-        super();
+    public Medico(String nombre, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String genero, String telefono,
+                  String celular, String ci, String direccion, String correo, boolean activo, String especialidad, String curriculumVitae, Integer anosExperiencia, String numMatricula) {
+        super(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, genero, telefono, celular, ci, direccion, correo, activo);
         this.especialidad = especialidad;
         this.curriculumVitae = curriculumVitae;
         this.anosExperiencia = anosExperiencia;

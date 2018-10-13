@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-@Entity(name = "persona" )
+@MappedSuperclass
 public class Persona extends Base {
 
     @Size(min = 3, max = 50)
@@ -56,15 +56,8 @@ public class Persona extends Base {
 
     }
 
-    public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, Boolean activo) {
-//        super();
-        this.nombre = nombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
-        this.activo = activo;
-    }
-
-    public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String genero, String telefono, String celular, String ci, String direccion, String correo, boolean activo) {
+    public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, Date fechaNacimiento, String genero, String telefono,
+                   String celular, String ci, String direccion, String correo, boolean activo) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;

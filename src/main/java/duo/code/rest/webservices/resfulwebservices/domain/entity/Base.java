@@ -2,14 +2,18 @@ package duo.code.rest.webservices.resfulwebservices.domain.entity;
 
 import org.springframework.data.annotation.*;
 import org.springframework.data.annotation.Version;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Optional;
 
 @MappedSuperclass
-public class Base implements Serializable {
+@EntityListeners(AuditingEntityListener.class)
+public class Base implements Serializable, AuditorAware<String> {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -103,5 +107,10 @@ public class Base implements Serializable {
 
         if (id != that.id) return false;
         return version.equals(that.version);
+    }
+
+    @Override
+    public Optional<String> getCurrentAuditor() {
+        return null;
     }
 }
