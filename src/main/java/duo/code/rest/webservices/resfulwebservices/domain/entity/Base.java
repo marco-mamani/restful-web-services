@@ -1,7 +1,6 @@
 package duo.code.rest.webservices.resfulwebservices.domain.entity;
 
 import org.springframework.data.annotation.*;
-import org.springframework.data.annotation.Version;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -19,19 +18,20 @@ public class Base implements Serializable, AuditorAware<String> {
     @GeneratedValue(strategy= GenerationType.AUTO)
     protected int id;
 
-    @Version
-    protected Long version;
-
     @CreatedDate
+    @Column(nullable = false, updatable = false)
     protected Date fechaCreacion;
 
     @CreatedBy
+    @Column(nullable = false, updatable = false)
     protected String creadoPor;
 
     @LastModifiedDate
+    @Column(nullable = false)
     protected Date fechaModificacion;
 
     @LastModifiedBy
+    @Column(nullable = false)
     protected String modificadoPor;
 
     /**
@@ -47,44 +47,20 @@ public class Base implements Serializable, AuditorAware<String> {
         this.id = id;
     }
 
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
     public Date getFechaCreacion() {
         return fechaCreacion;
-    }
-
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
     }
 
     public String getCreadoPor() {
         return creadoPor;
     }
 
-    public void setCreadoPor(String creadoPor) {
-        this.creadoPor = creadoPor;
-    }
-
     public Date getFechaModificacion() {
         return fechaModificacion;
     }
 
-    public void setFechaModificacion(Date fechaModificacion) {
-        this.fechaModificacion = fechaModificacion;
-    }
-
     public String getModificadoPor() {
         return modificadoPor;
-    }
-
-    public void setModificadoPor(String modificadoPor) {
-        this.modificadoPor = modificadoPor;
     }
 
     @Override
@@ -93,24 +69,11 @@ public class Base implements Serializable, AuditorAware<String> {
         System.out.println("RETURn STRING BASE...");
         return "Base{" +
                 "id='" + id + '\'' +
-                ", version=" + version +
                 '}';
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
-        if (this == obj) return true;
-        if (!(obj instanceof Base)) return false;
-
-        Base that = (Base) obj;
-
-        if (id != that.id) return false;
-        return version.equals(that.version);
-    }
-
-    @Override
     public Optional<String> getCurrentAuditor() {
-        return null;
+        return Optional.of("Mr. Auditor");
     }
 }
